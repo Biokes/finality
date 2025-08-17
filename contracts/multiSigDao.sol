@@ -43,16 +43,13 @@ contract MultiSigDAO {
 
     function createProposal(string memory description) external onlyAdmin {
         counter += 1;
-        Proposal memory proposal = Proposal(
-            Status.PENDING,
-            msg.sender,
-            new address,
-            description,
-            counter,
-            new address
-        );
+        Proposal memory proposal;
+         proposal.status= Status.PENDING;
+         proposal.description= description;
+         proposal.id= counter;
+         proposal.user= msg.sender;
         allProposals.push(proposal);
-        proposals[counter].push(proposal);
+        proposals[counter]= proposal;
     }
 
     error UNAUTHORIZED(address);
